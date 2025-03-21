@@ -1,44 +1,80 @@
 import * as d3 from 'd3';
 import {useEffect, useRef} from "react";
+import "../../assets/traficLine.css"
 
 export default function TraficLine({
                                        data,
-                                       width = 1200, height = 500,
-                                       marginTop = 20,
-                                       marginRight = 20,
-                                       marginBottom = 20,
-                                       marginLeft = 20
+
                                    }) {
 
-let visitOfWeek = data.trafic.totalVisitsOfWeek.map((d,i)=>[i,d])
-    let maxValue = d3.extent(visitOfWeek,d=>d[1])[1]
-    let minValue = d3.extent(visitOfWeek,d=>d[1])[0] -3
-    console.log(maxValue, minValue, visitOfWeek);
+    const svgRef = useRef(null);
+
+    let visitOfWeek = data.trafic.totalVisitsOfWeek.map((d, i) => [i, d])
 
 
-    const gx = useRef();
-    const gy = useRef();
-    const x = d3.scaleLinear([0, visitOfWeek.length -1], [marginLeft, width - marginRight]);
-    console.log([0, visitOfWeek.length -1])  // 0,6
-    console.log(maxValue) //290
-    console.log(minValue) //227
-    console.log([height - marginBottom, marginTop])
-    const y = d3.scaleLinear([minValue,maxValue] , [height - marginBottom, marginTop]);
+    useEffect(() => {
+        function run() {
 
 
-    const line = d3.line()
-        .x(d=>x(d[0]))
-        .y(d=>y(d[1]))
-    useEffect(() => void d3.select(gx.current).call(d3.axisBottom(x)), [gx, x]);
-    useEffect(() => void d3.select(gy.current).call(d3.axisLeft(y)), [gy, y]);
+            let svg = d3.select(svgRef.current);
+
+            let width = svgRef.current.getBoundingClientRect().width
+
+            const height = svgRef.current.getBoundingClientRect().height
+            const cs = window.getComputedStyle(svgRef.current)
+            const padding = parseInt(cs.padding.replace("px", ""))
+            const leftAxisWidth = 28
+            const bottomAxisWidth = 35
+
+            const x = d3.scaleLinear([0, visitOfWeek.length - 1], [padding+leftAxisWidth, width - padding-leftAxisWidth]);
+            const y = d3.scaleLinear(d3.extent(visitOfWeek, d => d[1]), [height - bottomAxisWidth - padding, padding ]);
+
+
+            svg.selectAll("*").remove();
+
+            // add axis
+            const xAxis = d3.axisBottom(x)
+            svg.append("g")
+                .call(xAxis)
+                .attr("transform", "translate("+ -padding +"," + (height -bottomAxisWidth - padding/2) + ")")
+
+            const yAxis = d3.axisLeft(y)
+                .ticks(6)
+            svg.append("g")
+                .call(yAxis)
+                .attr("transform", "translate(" + (leftAxisWidth )+ ","+padding+")")
+
+
+            //add path
+            svg.append("path")
+                .datum(visitOfWeek)
+                .attr("class", "line")
+                .attr("color", "red")
+                .attr("d", d3.line()
+                    .y(d => y(d[1]))
+                    .x(d => x(d[0])))
+
+
+            svg.selectAll()
+                .data(visitOfWeek)
+                .join("circle")
+                .attr("class", "point")
+                .attr("r", 5)
+                .attr("cx", (d) => x(d[0]))
+                .attr("cy", (d) => y(d[1]))
+
+        }
+
+
+        if (svgRef.current && visitOfWeek.length > 0) {
+            run();
+        }
+
+    }, [data, visitOfWeek]);
+
+
     return (
-        <svg width={width} height={height}>
-            <g ref={gx} transform={`translate(0,${height - marginBottom})`}/>
-            <g ref={gy} transform={`translate(${marginLeft},0)`}/>
-            <path fill="none" stroke="currentColor" strokeWidth="1.5" d={line(visitOfWeek)}/>
-            <g fill="white" stroke="currentColor" strokeWidth="1.5">
-                {visitOfWeek.map((d, i) => (<circle key={i} cx={x(d[0])} cy={y(d[1])} r="2.5"/>))}
-            </g>
+        <svg ref={svgRef}>
         </svg>
     );
 }
