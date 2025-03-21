@@ -24,10 +24,12 @@ export default function TraficLine({
             const cs = window.getComputedStyle(svgRef.current)
             const padding = parseInt(cs.padding.replace("px", ""))
             const leftAxisWidth = 28
-            const bottomAxisWidth = 35
+            const bottomAxisWidth = 28
 
-            const x = d3.scaleLinear([0, visitOfWeek.length - 1], [padding+leftAxisWidth, width - padding-leftAxisWidth]);
-            const y = d3.scaleLinear(d3.extent(visitOfWeek, d => d[1]), [height - bottomAxisWidth - padding, padding ]);
+            console.log(width,height)
+
+            const x = d3.scaleLinear([0, visitOfWeek.length - 1], [ leftAxisWidth, width -leftAxisWidth]);
+            const y = d3.scaleLinear(d3.extent(visitOfWeek, d => d[1]), [height  ,bottomAxisWidth]);
 
 
             svg.selectAll("*").remove();
@@ -36,13 +38,13 @@ export default function TraficLine({
             const xAxis = d3.axisBottom(x)
             svg.append("g")
                 .call(xAxis)
-                .attr("transform", "translate("+ -padding +"," + (height -bottomAxisWidth - padding/2) + ")")
+                .attr("transform", "translate(0," + (height -bottomAxisWidth/1.5) + ")")
 
             const yAxis = d3.axisLeft(y)
                 .ticks(6)
             svg.append("g")
                 .call(yAxis)
-                .attr("transform", "translate(" + (leftAxisWidth )+ ","+padding+")")
+                .attr("transform", "translate(" + (leftAxisWidth )+ ","+ -bottomAxisWidth/2+")")
 
 
             //add path
@@ -50,6 +52,8 @@ export default function TraficLine({
                 .datum(visitOfWeek)
                 .attr("class", "line")
                 .attr("color", "red")
+                .attr("transform", "translate(0,"+-bottomAxisWidth/1.5+")")
+
                 .attr("d", d3.line()
                     .y(d => y(d[1]))
                     .x(d => x(d[0])))
@@ -59,18 +63,19 @@ export default function TraficLine({
                 .data(visitOfWeek)
                 .join("circle")
                 .attr("class", "point")
-                .attr("r", 5)
+                .attr("r", 3)
                 .attr("cx", (d) => x(d[0]))
-                .attr("cy", (d) => y(d[1]))
+                .attr("cy", (d) => y(d[1]+5))
 
         }
 
 
         if (svgRef.current && visitOfWeek.length > 0) {
+            window.addEventListener("resize", run);
             run();
         }
 
-    }, [data, visitOfWeek]);
+    }, [data, visitOfWeek,]);
 
 
     return (

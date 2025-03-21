@@ -24,11 +24,17 @@ export default function Dashboard() {
 
                 </div>
                 <div className="right">
-                    <TraficLine data={data}></TraficLine>
+                    <div>
+                        <TraficLine data={data}></TraficLine>
+                    </div>
                     <hr/>
-                    <TraficLine data={data}></TraficLine>
+                    <div>
+                        <TraficLine data={data}></TraficLine>
+                    </div>
                     <hr/>
-                    <TraficLine data={data}></TraficLine>
+                    <div>
+                        <TraficLine data={data}></TraficLine>
+                    </div>
                 </div>
             </div>
 
