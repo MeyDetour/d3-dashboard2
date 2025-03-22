@@ -15,16 +15,14 @@
     "giveUpUsers": 95,
     "searchTime": 80
   },
-  "products": {
-    "bestSeller": {
+  "products": [{
       "name": "Robe en soie dorée",
-      "price": 890
-    },
-    "worstSeller": {
+      "number": 890
+    },{
       "name": "Chaussettes en cachemire",
-      "price": 85
+      "number": 85
     }
-  },
+  ],
   "cart": {
     "mostExpensiveCart": 18750,
     "cheapestCart": 120,

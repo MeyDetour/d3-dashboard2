@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import TraficLine from "./graph/traficLine.jsx";
 import "../assets/dashboard.css"
+import WebChart from "./graph/webChart.jsx";
 export default function Dashboard() {
     const [data, setData] = useState(null);
 
@@ -21,7 +22,7 @@ export default function Dashboard() {
 
             <div className="dashboard">
                 <div className="left">
-
+<WebChart data={data}></WebChart>
                 </div>
                 <div className="right">
                     <div>
