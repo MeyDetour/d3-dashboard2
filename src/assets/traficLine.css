@@ -1,0 +1,10 @@
+.line{
+    fill: transparent;
+    stroke-width: 2px;
+    stroke: var(--white);
+}
+
+.point{
+    fill: var(--bleu);
+}
+

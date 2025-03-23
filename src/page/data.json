@@ -1,0 +1,43 @@
+{
+  "totalUserCreated": 1200,
+  "totalOrder": 1750,
+  "users": {
+    "connected": [80, 90, 85, 75, 70, 95, 85],
+    "buySomething": [40, 45, 50, 35, 38, 55, 48],
+    "clear": [10, 12, 9, 15, 18, 11, 8],
+    "firstOrder": [18, 22, 19, 25, 21, 27, 20],
+    "new": [15, 20, 18, 22, 17, 19, 23]
+  },
+  "trafic": {
+    "totalVisitsOfMonth": [1200, 1250, 1100, 1300, 1350, 1220, 1275],
+    "totalVisitsOfWeek": [250, 270, 230, 280, 290, 260, 245],
+    "regularUsers": 450,
+    "giveUpUsers": 95,
+    "searchTime": 80
+  },
+  "products": [{
+      "name": "Robe",
+      "max": 150
+    },{
+      "name": "Chaussettes",
+      "max": 85
+    },{
+      "name": "Chemise",
+      "max": 80
+    },{
+      "name": "Sac",
+      "max": 100
+    }
+  ],
+  "cart": {
+    "mostExpensiveCart": 18750,
+    "cheapestCart": 120,
+    "largestCart": 15,
+    "leastFilledtCart": 1,
+    "totalOrderThisWeek": 85,
+    "cleanedCart": 12,
+    "averageOfNumberOfProduct": 3,
+    "turnOverThisWeek": 224000,
+    "totlaUserWithoutOrder": 45
+  }
+}

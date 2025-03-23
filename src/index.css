@@ -1,0 +1,22 @@
+:root {
+  --background-grey:#E8EAEC;
+  --white: #FFFFFF;
+  --grey:#D4D8DB;
+  --black: #242C40;
+  --bleu : #7AA7D1;
+  --lightgray: #D7D9DD;
+}
+
+body{
+  background-color: var(--background-grey);
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root{
+  width: 100%;
+  min-height: 100vh;
+}
