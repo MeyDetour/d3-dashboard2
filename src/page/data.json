@@ -27,6 +27,9 @@
     },{
       "name": "Sac",
       "max": 100
+    },{
+      "name": "Cravatte",
+      "max": 125
     }
   ],
   "cart": {

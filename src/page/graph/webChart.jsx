@@ -22,7 +22,6 @@ export default function WebChart({data}) {
 
             // get the width/2 or heihgt/2  for the width of circle
             const outerRadius = Math.min(width, height) / 2;
-            console.log(outerRadius)
             const INNER_RADIUS = 40;
 
             // get the center of circle
@@ -39,7 +38,7 @@ export default function WebChart({data}) {
             // different step of angle of circle like different x of xAxis
             const teta = d3.scaleBand()
                 .domain(groupsNames)
-                .range([padding, 2 * Math.PI]);
+                .range([0, 2 * Math.PI]);
 
             // different distance of the point. for each name we create and axis wich go from 0 to distance max
             let distance = {};
@@ -56,7 +55,6 @@ export default function WebChart({data}) {
             groupsNames.forEach(name => {
 
                 const angle = teta(name);
-                console.log(angle);
                 // cos wwith sin let a circle
                 const x = Math.cos(angle) * outerRadius;
                 const y = Math.sin(angle) * outerRadius;
@@ -66,13 +64,13 @@ export default function WebChart({data}) {
                     .attr("y1", 0)
                     .attr("x2", x)
                     .attr("y2", y)
-                    .attr("stroke", "gray")
+                    .attr("class", "line")
                     .attr("stroke-width", 1);
 
-
-                console.log(Math.floor(Math.cos(angle)),2)
-                console.log(Math.floor(Math.sin(angle)),2)
-                let coord = xyWithDecalage(angle, x, y)
+                console.log(name)
+                console.log(Math.cos(angle))
+                console.log(Math.sin(angle))
+                let coord = xyWithDecalage(angle, x, y,name)
 
                 axisGroup.append("text")
                     .text(name)
@@ -84,13 +82,13 @@ export default function WebChart({data}) {
                     .attr("cx", 0)
                     .attr("cy", 0)
                     .attr("r", (outerRadius / numCircles) * i)
-                    .attr("stroke", "gray")
+                    .attr("class", "circle")
                     .attr("fill", "none");
             }
 
 
             let lineRadial = d3.lineRadial()
-                .angle(d => teta(d.name))
+                .angle(d => teta(d.name) +1/2*Math.PI)
                 .radius(d => distance[d.name](d.max))
                 .curve(d3.curveLinearClosed)
 
@@ -117,23 +115,35 @@ export default function WebChart({data}) {
     )
 }
 
-function xyWithDecalage(angle, x, y) {
+function xyWithDecalage(angle, x, y,name) {
+    console.log(Math.round(Math.cos(angle)))
+    console.log(Math.round(Math.sin(angle)))
     let widthString = measureString(name) + 15
-    let decalageX = 10
-    if (Math.floor(Math.cos(angle)) === -1) {
-        decalageX = widthString
+    let decalageX = -(widthString-15)/2
+    if (Math.round(Math.cos(angle)) === -1) {
+        decalageX = -widthString
     }
+    if (Math.round(Math.cos(angle)) === 1) {decalageX = 10}
 
     let decalageY = 10
+    if (Math.round(Math.sin(angle)) === 1) {decalageY = 20}
 
-    x = x + (decalageX * Math.floor(Math.cos(angle)))
-     y = y + (decalageY * Math.floor(Math.sin(angle)))
+    console.log("widthString", widthString)
+    console.log("  x : ",x)
+    console.log("  y : ",y)
+    console.log("decalage x : ",decalageX)
+    console.log("decalage y : ",decalageY)
+    x = x + decalageX
+     y = y + (decalageY * Math.round(Math.sin(angle)))
+
+    console.log("  x : ",x)
+    console.log("  y : ",y)
     return {x, y}
 }
 
 function measureString(str) {
     let p = document.createElement("p");
-    p.textContent = str;
+    p.innerText = str;
     p.style.width = "fit-content";
     document.body.appendChild(p); // Nécessaire pour que la largeur soit calculée
     let width = p.getBoundingClientRect().width;

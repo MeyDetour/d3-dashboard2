@@ -3,3 +3,8 @@
     stroke: #a9d9e2;
     stroke-width: 3px;
 }
+.line , .circle{
+
+    stroke: var(--grey);
+    stroke-width: 1px;
+}
