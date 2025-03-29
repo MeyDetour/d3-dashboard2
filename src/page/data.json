@@ -15,23 +15,83 @@
     "giveUpUsers": 95,
     "searchTime": 80
   },
-  "products": [{
+  "products":  {
+    "productsNames": ["Robe","Chaussettes","Chemise","Sac","Cravatte"],
+    "quantityProductsSoldThisWeek": [{
       "name": "Robe",
-      "max": 150
+      "max": 32
     },{
       "name": "Chaussettes",
-      "max": 85
+      "max": 55
+    },{
+      "name": "Chemise",
+      "max": 23
+    },{
+      "name": "Sac",
+      "max": 10
+    },{
+      "name": "Cravatte",
+      "max": 25
+    }
+    ],
+    "quantityProductsSoldThisMonth": [{
+      "name": "Robe",
+      "max": 250
+    },{
+      "name": "Chaussettes",
+      "max": 155
     },{
       "name": "Chemise",
       "max": 80
     },{
       "name": "Sac",
-      "max": 100
+      "max": 92
     },{
       "name": "Cravatte",
       "max": 125
     }
-  ],
+    ],
+    "quantityProductsSoldThisDay": [{
+      "name": "Robe",
+      "max": 6
+    },{
+      "name": "Chaussettes",
+      "max": 5
+    },{
+      "name": "Chemise",
+      "max": 1
+    },{
+      "name": "Sac",
+      "max": 3
+    },{
+      "name": "Cravatte",
+      "max": 10
+    }
+    ],
+    "quantityProductsSoldinTotal": [
+      {
+        "name": "Robe",
+        "valueForMonths": [120, 150, 90, 200, 180, 130, 170, 140, 160, 110, 175, 95]
+      },
+      {
+        "name": "Chaussettes",
+        "valueForMonths": [60, 80, 75, 90, 85, 70, 95, 88, 92, 65, 78, 72]
+      },
+      {
+        "name": "Chemise",
+        "valueForMonths": [50, 30, 50, 45, 60, 65, 80, 75, 70, 55, 48, 35]
+      },
+      {
+        "name": "Sac",
+        "valueForMonths": [40, 25, 30, 20, 35, 38, 50, 55, 60, 45, 32, 28]
+      },
+      {
+        "name": "Cravatte",
+        "valueForMonths": [10, 20, 35, 25, 45, 50, 55,20, 12, 48, 42, 30]
+      }
+    ]
+
+  },
   "cart": {
     "mostExpensiveCart": 18750,
     "cheapestCart": 120,

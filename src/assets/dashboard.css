@@ -10,7 +10,7 @@
 }
 
 .dashboard .left {
-    width: 65%;
+    width: 50%;
     background: var(--white);
     border-radius: 16px;
     box-shadow: #00000012 0 8px 33px 1px;
@@ -20,13 +20,13 @@
     justify-content: center;
 }
 
-.dashboard .left > * {
+.dashboard .left >svg {
     width: 80%;
     height: 80%;
 }
 .dashboard .right {
 
-    width: 35%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -35,9 +35,9 @@
 
 .dashboard .right > *:not(hr) {
 
-    height: 31%;
+    height: 50%;
     width: 100%;
-    background: #e0e1e2;
+    background: var(--white);
     padding: 10px;
     box-sizing: border-box;
     border-radius: 16px;

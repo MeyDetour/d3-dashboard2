@@ -3,8 +3,26 @@
     stroke: #a9d9e2;
     stroke-width: 3px;
 }
-.line , .circle{
+.webChartLine , .webChartCircle{
 
-    stroke: var(--grey);
+    stroke: #9a9a9a;
     stroke-width: 1px;
+}
+.labelValue{
+    z-index: 10;
+    font-size: 13px;
+    color: var(--grey);
+}
+
+.webChartChoice{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+.webChartChoice > span{
+    cursor: pointer;
+}
+.webChartChoice .focus{
+    font-weight: bold;
 }

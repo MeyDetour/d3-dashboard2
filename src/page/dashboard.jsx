@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import TraficLine from "./graph/traficLine.jsx";
 import "../assets/dashboard.css"
 import WebChart from "./graph/webChart.jsx";
+import SellChart from "./graph/sellChart.jsx";
+
 export default function Dashboard() {
     const [data, setData] = useState(null);
 
@@ -20,24 +22,21 @@ export default function Dashboard() {
 
     return (
 
-            <div className="dashboard">
-                <div className="left">
-<WebChart data={data}></WebChart>
-                </div>
-                <div className="right">
-                    <div>
-                        <TraficLine data={data}></TraficLine>
-                    </div>
-                    <hr/>
-                    <div>
-                        <TraficLine data={data}></TraficLine>
-                    </div>
-                    <hr/>
-                    <div>
-                        <TraficLine data={data}></TraficLine>
-                    </div>
-                </div>
+        <div className="dashboard">
+            <div className="left">
+                <WebChart data={data}></WebChart>
             </div>
+            <div className="right">
+                <div>
+                    <TraficLine data={data}></TraficLine>
+                </div>
+                <hr/>
+                <div>
+                    <SellChart data={data}></SellChart>
+                </div>
+
+            </div>
+        </div>
 
     )
 }
