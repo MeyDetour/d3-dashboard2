@@ -1,0 +1,10 @@
+.traficline{
+    fill: transparent;
+    stroke-width: 2px;
+    stroke: var(--grey);
+}
+
+.point{
+    fill: var(--bleu);
+}
+

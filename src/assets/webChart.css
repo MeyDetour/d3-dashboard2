@@ -1,0 +1,37 @@
+.polygon{
+    fill: #8adbcf5c;
+    stroke: #a9d9e2;
+    stroke-width: 3px;
+}
+.webChartLine , .webChartCircle{
+
+    stroke: #9a9a9a;
+    stroke-width: 1px;
+}
+.labelValue{
+    z-index: 10;
+    font-size: 13px;
+    color: var(--grey);
+}
+
+.webChartChoice{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+.webChartChoice > span{
+    cursor: pointer;
+}
+.webChartChoice .focus{
+    font-weight: bold;
+}
+
+.webChartLegend{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: center;
+    gap: 20px;
+}
