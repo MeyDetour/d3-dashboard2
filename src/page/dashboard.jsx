@@ -9,7 +9,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         async function getData() {
-            let res = await fetch("/src/page/data.json")
+            let res = await fetch("data.json")
             res = await res.json()
             console.log(res)
             setData(res)
